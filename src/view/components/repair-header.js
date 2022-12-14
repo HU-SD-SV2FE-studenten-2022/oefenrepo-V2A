@@ -6,13 +6,15 @@ export default class RepairHeader extends LitElement {
   }
 
   static get properties() {
-    return {};
+    return {
+      repairid: { type: Number }
+    };
   }
 
   render() {
     return html`
       <fieldset>
-        Datum: ${new Date(Date.now()).toDateString()} Tijd: ${new Date(Date.now()).toLocaleTimeString()}
+        ID: ${this.repairid} Datum: ${new Date(Date.now()).toDateString()} Tijd: ${new Date(Date.now()).toLocaleTimeString()}
       </fieldset>
     `
   }

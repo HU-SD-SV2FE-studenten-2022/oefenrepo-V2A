@@ -14,6 +14,7 @@ export default class RepairAssignment extends LitElement {
       <fieldset>
         <legend>Opdracht</legend>
         <label for="description">Beschrijving:</label><textarea id="desciption" name="description" row="10" col="70"></textarea>
+        <label for="timeestimate">Tijdsindicatie</label><input id="timeestimate" name="timeestimate" type="number">
       </fieldset>
     `
   }
