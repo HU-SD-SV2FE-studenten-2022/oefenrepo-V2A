@@ -3,6 +3,7 @@ import RepairHeader from './repair-header';
 import RepairCustomer from './repair-customer';
 import RepairAssignment from './repair-assignment';
 import RepairService from "../../service/repair-service";
+import Repair from "../../model/repair";
 
 const ESTIMATETIME_CHANGED_EVENT = 'estimated-changed';
 
@@ -51,8 +52,10 @@ export default class RepairForm extends LitElement {
     window.print();
   }
 
-  #submitform() {
-    // TODO: Reparatie toevoegen
+  #submitform(event) {
+    event.preventDefault();
+    const newRepair = new Repair(this.repairid, this.estimatedRepairtime);
+    this.repairService.addRepair(newRepair).then(() => window.location.href = '/pages/dashboard.html');
   }
 
   render() {
