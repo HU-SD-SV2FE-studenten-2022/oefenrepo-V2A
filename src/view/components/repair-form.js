@@ -4,6 +4,8 @@ import RepairCustomer from './repair-customer';
 import RepairAssignment from './repair-assignment';
 import RepairService from "../../service/repair-service";
 
+const ESTIMATETIME_CHANGED_EVENT = 'estimated-changed';
+
 export default class RepairForm extends LitElement {
   static get styles() {
     return css`
@@ -27,11 +29,22 @@ export default class RepairForm extends LitElement {
     super();
     this.repairService = new RepairService();
     this.repairid = 0;
+    this.estimatedRepairtime = 0;
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.repairService.nextId().then((id) => this.repairid = id);
+    window.addEventListener(ESTIMATETIME_CHANGED_EVENT, (e) => this.#estimatedTimeEventHandler(e));
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener(ESTIMATETIME_CHANGED_EVENT, this.#estimatedTimeEventHandler);
+    super.disconnectedCallback();
+  }
+
+  #estimatedTimeEventHandler(event) {
+   this.estimatedRepairtime = event.detail.timeestimate; 
   }
 
   #printHandler() {
