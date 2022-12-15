@@ -10,10 +10,6 @@ export default class RepairAssignment extends LitElement {
   static get properties() {
     return {};
   }
-
-  connectedCallback() {
-    super.connectedCallback();
-  }
   
   #estimatedtimeChanged(event) {
     const estimateChangedEvent = new CustomEvent(ESTIMATETIME_CHANGED_EVENT, {
