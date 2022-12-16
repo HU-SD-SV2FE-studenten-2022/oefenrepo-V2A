@@ -35,7 +35,9 @@ export default class RepairForm extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.repairService.nextId().then((id) => this.repairid = id);
+    this.repairService.nextId().then((id) => {
+      this.repairid = id;
+    });
     window.addEventListener(ESTIMATETIME_CHANGED_EVENT, (e) => this.#estimatedTimeEventHandler(e));
   }
 

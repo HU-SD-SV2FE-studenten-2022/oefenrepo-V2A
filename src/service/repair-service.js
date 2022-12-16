@@ -32,10 +32,27 @@ export default class RepairService {
    */
   addRepair(repairAssignment) {
     return new Promise((resolve) => {
-      console.log(this.repairAssignments, repairAssignment);
       this.repairAssignments = [...this.repairAssignments, repairAssignment];
       window.localStorage.setItem(REPAIRS_KEY, JSON.stringify(this.repairAssignments));
       resolve();
     })
+  }
+
+  deleteRepair(id) {
+    return new Promise((resolve) => {
+      this.repairAssignments = this.repairAssignments.filter((repair) => repair.id !== id);
+      window.localStorage.setItem(REPAIRS_KEY, JSON.stringify(this.repairAssignments));
+      resolve(this.repairAssignments);
+    });
+  }
+
+  getRepairs() {
+    return new Promise((resolve) => {
+      this.repairAssignments = JSON.parse(window.localStorage.getItem(REPAIRS_KEY));
+      if (!this.repairAssignments) {
+        this.repairAssignments = [];
+      }
+      resolve([...this.repairAssignments]);
+    });
   }
 }

@@ -11,6 +11,14 @@ export default class RepairHeader extends LitElement {
     };
   }
 
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+  }
+
   render() {
     return html`
       <fieldset>
