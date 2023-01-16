@@ -1,4 +1,5 @@
 import { LitElement, css, html } from "lit";
+import { Router } from '@vaadin/router';
 import RepairHeader from './repair-header';
 import RepairCustomer from './repair-customer';
 import RepairAssignment from './repair-assignment';
@@ -57,7 +58,7 @@ export default class RepairForm extends LitElement {
   #submitform(event) {
     event.preventDefault();
     const newRepair = new Repair(this.repairid, this.estimatedRepairtime);
-    this.repairService.addRepair(newRepair).then(() => window.location.href = '/pages/dashboard.html');
+    this.repairService.addRepair(newRepair).then(() => Router.go('/'));
   }
 
   render() {
